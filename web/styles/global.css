@@ -1,0 +1,30 @@
+* {
+  outline: none !important;
+}
+
+.hover-bg-opacity-white:hover {
+  background-color: #FFFFFF66;
+}
+
+.rotate-vertical {
+  animation: rotate-vertical .3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes rotate-vertical {
+  from {
+    transform: rotate();
+  }
+
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.slick-slide *, .slick-arrow {
+  z-index: -1 !important;
+}
+
+.yellow {
+  color: #e7a74e;
+}
