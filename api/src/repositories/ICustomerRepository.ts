@@ -1,6 +1,7 @@
-import { User } from "../entities/User";
+import { Customer } from "../entities/Customer";
 
 export interface ICustomerRepository {
-  findByEmail(email: string): Promise<User>
-  save(user: User): Promise<void>
+  findByEmail(email: string): Promise<Customer>
+  findByToken(token: string): Promise<Customer>
+  save(user: Customer): Promise<string>
 }

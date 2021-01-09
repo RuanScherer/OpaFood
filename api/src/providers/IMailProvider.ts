@@ -1,11 +1,5 @@
-interface IAddress {
-  email: string
-  name: string
-}
-
 export interface IMessage {
-  to: IAddress
-  from: IAddress
+  to: string
   subject: string
   message: string
 }

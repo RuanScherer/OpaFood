@@ -1,4 +1,5 @@
 import { getMongoManager, MongoEntityManager } from "typeorm";
+import { v4 } from "uuid";
 import { Customer } from "../../entities/Customer";
 import { connect, disconnect } from "../../infrastructure/database/connection";
 import { ICustomerRepository } from "../ICustomerRepository";
@@ -16,13 +17,25 @@ export class MongoCustomerRepository implements ICustomerRepository {
     return customer
   }
 
-  async save(customer: Customer): Promise<void> {
+  async findByToken(token: string): Promise<Customer> {
     await connect()
     this.manager = getMongoManager()
+
+    const customer = await this.manager.findOne(Customer, { token })
+
+    await disconnect()
+    return customer
+  }
+
+  async save(customer: Customer): Promise<string> {
+    await connect()
+    this.manager = getMongoManager()
+
+    customer.token = v4()
 
     await this.manager.save(customer)
     
     await disconnect()
-    return
+    return customer.token
   }
 }

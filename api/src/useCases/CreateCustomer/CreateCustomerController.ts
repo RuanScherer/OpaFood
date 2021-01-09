@@ -18,7 +18,8 @@ export class CreateCustomerController {
         email,
         password,
         phone,
-        verified: false
+        verified: false,
+        token: null
       })
 
       return response.status(201).send()
