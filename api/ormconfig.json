@@ -1,0 +1,9 @@
+{
+  "type": "mongodb",
+  "url": "mongodb+srv://admin:HkDUwLBAMEJEMNkd@opafood.fodnc.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "useUnifiedTopology": true,
+  "entities": [
+    "./src/entities/User.ts",
+    "./src/entities/Customer.ts"
+  ]
+}
