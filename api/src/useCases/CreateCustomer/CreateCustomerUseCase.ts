@@ -1,5 +1,6 @@
 import { verifyAccountEmailTemplate } from "../../constants";
 import { Customer } from "../../entities/Customer";
+import { log } from "../../logger";
 import { IMailProvider } from "../../providers/IMailProvider";
 import { ICustomerRepository } from "../../repositories/ICustomerRepository";
 import { ICreateCustomerRequestDTO } from "./CreateCustomerDTO";
@@ -17,9 +18,20 @@ export class CreateCustomerUseCase {
   }
 
   async execute(data: ICreateCustomerRequestDTO) {
+    log({
+      type: 'INFO',
+      step: 'START',
+      message: 'Start of Create Customer use case'
+    })
+
     const customerAlreadyExists = await this.customerRepository.findByEmail(data.email)
 
     if (customerAlreadyExists) {
+      log({
+        type: 'INFO',
+        step: 'END',
+        message: 'End of Create Customer use case'
+      })
       throw new Error('User already exists.')
     }
 
@@ -31,6 +43,12 @@ export class CreateCustomerUseCase {
       to: data.email,
       subject: 'Verificação de Cadastro no OpaFood!',
       message: verifyAccountEmailTemplate(token)
+    })
+
+    log({
+      type: 'INFO',
+      step: 'END',
+      message: 'End of Create Customer use case'
     })
   }
 }
