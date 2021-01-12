@@ -2,6 +2,7 @@ import { Router } from "express";
 import { createCustomerController } from "./useCases/CreateCustomer";
 import { createRestaurantController } from "./useCases/CreateRestaurant";
 import { verifyCustomerController } from "./useCases/VerifyCustomer";
+import { verifyRestaurantController } from "./useCases/VerifyRestaurant";
 
 const router = Router()
 
@@ -15,6 +16,10 @@ router.get("/customers/verify", (request, response) => {
 
 router.post("/restaurants/register", (request, response) => {
   return createRestaurantController.handle(request, response)
+})
+
+router.get("/restaurants/verify", (request, response) => {
+  return verifyRestaurantController.handle(request, response)
 })
 
 export { router }
