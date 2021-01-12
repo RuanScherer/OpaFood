@@ -42,7 +42,7 @@ export class CreateCustomerUseCase {
     await this.mailProvider.sendMail({
       to: data.email,
       subject: 'Verificação de Cadastro no OpaFood!',
-      message: verifyAccountEmailTemplate(token)
+      message: verifyAccountEmailTemplate({ token, userType: 'CUSTOMER' })
     })
 
     log({

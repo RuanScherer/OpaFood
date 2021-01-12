@@ -4,6 +4,7 @@
   "useUnifiedTopology": true,
   "entities": [
     "./src/entities/User.ts",
-    "./src/entities/Customer.ts"
+    "./src/entities/Customer.ts",
+    "./src/entities/Restaurant.ts"
   ]
 }
