@@ -4,6 +4,7 @@ import { log } from "../../logger";
 import { IMailProvider } from "../../providers/IMailProvider";
 import { ICustomerRepository } from "../../repositories/ICustomerRepository";
 import { ICreateCustomerRequestDTO } from "./CreateCustomerDTO";
+import { hash } from 'bcryptjs'
 
 export class CreateCustomerUseCase {
   private customerRepository: ICustomerRepository
@@ -34,6 +35,8 @@ export class CreateCustomerUseCase {
       })
       throw new Error('User already exists.')
     }
+
+    data.password = await hash(data.password, 10)
 
     const customer = new Customer(data)
 

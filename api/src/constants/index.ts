@@ -4,7 +4,7 @@ interface IVerifyAccountEmailTemplate {
 }
 
 const verifyAccountEmailTemplate = ({ token, userType }: IVerifyAccountEmailTemplate) => 
-  `<p style="background-color:#f0f0f0;padding: 2rem;font-size: 1.2rem;color: #000;text-align: center;/* max-width: 800px; */">
+  `<p style="background-color:#f0f0f0;padding: 2rem;font-size: 1.2rem;color: #000;text-align: center;">
     Você está quase pronto! Agora é só clicar no link abaixo para verificar seu cadastro e começar a aproveitar a plataforma.
     <br>
     <br>
@@ -13,4 +13,12 @@ const verifyAccountEmailTemplate = ({ token, userType }: IVerifyAccountEmailTemp
     </a>
   </p>`
 
-export { verifyAccountEmailTemplate }
+const newAccessEmailTemplate =
+  `<p style="background-color:#f0f0f0;padding: 2rem;font-size: 1.2rem;color: #000;text-align: center;">
+    Por motivos de segurança estamos passando pra avisar que houve um novo acesso na sua conta agora mesmo.
+    <br>
+    <br>
+    Atenciosamente, Equipe OpaFood.
+  </p>`
+
+export { verifyAccountEmailTemplate, newAccessEmailTemplate }

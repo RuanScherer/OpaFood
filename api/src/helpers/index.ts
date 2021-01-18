@@ -1,3 +1,10 @@
+import { sign } from "jsonwebtoken";
+
+interface IPayload {
+  _id: string
+  name: string
+}
+
 const validateDocument = (document: string) => {
  
   document = document.replace(/[^\d]+/g,'');
@@ -45,8 +52,9 @@ const validateDocument = (document: string) => {
   result = sum % 11 < 2 ? 0 : 11 - sum % 11;
   if (result != parseInt(digits.charAt(1))) return false;
          
-  return true;
-  
+  return true; 
 }
 
-export { validateDocument }
+const generateToken = (_id: string, name: string) => sign({ _id, name }, process.env.SECRET_KEY)
+
+export { validateDocument, generateToken }

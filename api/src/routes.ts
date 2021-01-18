@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authenticateCustomerController } from "./useCases/AuthenticateCustomer";
 import { createCustomerController } from "./useCases/CreateCustomer";
 import { createRestaurantController } from "./useCases/CreateRestaurant";
 import { verifyCustomerController } from "./useCases/VerifyCustomer";
@@ -12,6 +13,10 @@ router.post("/customers/register", (request, response) => {
 
 router.get("/customers/verify", (request, response) => {
   return verifyCustomerController.handle(request, response)
+})
+
+router.post("/customers/authenticate", (request, response) => {
+  return authenticateCustomerController.handle(request, response)
 })
 
 router.post("/restaurants/register", (request, response) => {
