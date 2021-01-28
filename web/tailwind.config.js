@@ -14,7 +14,7 @@ module.exports = {
         secondary: '#554ab2',
       },
       fontFamily: {
-        sans: ['Poppins', 'sans-serif']
+        serif: ['Arvo', 'sans-serif']
       }
     },
   },
