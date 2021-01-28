@@ -3,7 +3,7 @@ import "tailwindcss/tailwind.css"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import "../styles/global.css"
-import Header from "../components/Header"
+import { AnimateSharedLayout, motion } from 'framer-motion'
 import { useRouter } from "next/router"
 
 interface AppProps {
@@ -15,7 +15,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter()
 
   return (
-    <>
+    <AnimateSharedLayout>
       <Head>
         <title>IFood - Delivery de Comida</title>
         <meta charSet="utf-8" />
@@ -24,8 +24,10 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
         <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
       </Head>
       
-      <Component {...pageProps} />
-    </>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .1, duration: .4 }}>
+        <Component {...pageProps} />
+      </motion.div>
+    </AnimateSharedLayout>
   )
 }
 

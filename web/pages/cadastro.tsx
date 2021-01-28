@@ -22,7 +22,7 @@ const Cadastro:React.FC = () => {
 
   return (
     <main className="mx-auto text-gray-700 grid grid-cols-9 min-h-screen bg-primary">
-      <aside className="col-span-9 md:col-span-4 bg-white py-8 px-16">
+      <aside className="col-span-9 sm:col-span-6 md:col-span-5 xl:col-span-4 bg-white py-8 px-16">
         <form className="flex flex-col justify-center w-full h-full space-y-12">
           <Link href="/">
             <a className="flex items-center font-bold mb-4 hover:-translate-x-1 transition transform duration-200">
@@ -105,8 +105,9 @@ const Cadastro:React.FC = () => {
         </form>
       </aside>
 
-      <aside className="hidden md:col-span-5 md:flex justify-center items-center bg-cover" style={{ backgroundImage: "url('/images/background.svg')"}}>
-        
+      <aside 
+        className="hidden sm:col-span-3 md:col-span-4 xl:col-span-5 sm:block bg-cover"
+        style={{ backgroundImage: "url('/images/background.svg')"}}>
       </aside>
     </main>
   )
