@@ -25,6 +25,15 @@ export class CreateCustomerUseCase {
       message: 'Start of Create Customer use case'
     })
 
+    if (data.password.length < 8) {
+      log({
+        type: 'INFO',
+        step: 'END',
+        message: 'End of Create Customer use case'
+      })
+      throw new Error('Password too short.')
+    }
+
     const customerAlreadyExists = await this.customerRepository.findByEmail(data.email)
 
     if (customerAlreadyExists) {

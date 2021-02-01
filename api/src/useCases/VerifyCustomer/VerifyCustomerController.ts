@@ -18,7 +18,7 @@ export class VerifyCustomerController {
 
       await this.verifyCustomerUseCase.execute(token)
       
-      response.redirect('http://localhost:3000/validacao-concluida')
+      response.redirect('http://localhost:3000/email-verificado')
       return
     } catch (error) {
       return response.status(400).json({ message: error.message || 'Unexpected error.' })
