@@ -5,7 +5,7 @@ const EmailVerified: React.FC = () => {
 
   return (
     <main className="mx-auto grid grid-cols-9 min-h-screen py-14 lg:p-20 xl:p-24">
-      <aside className="col-span-9 md:col-span-5 xl:col-span-4 flex flex-col items-center justify-center md:items-start text-center md:text-left bg-white py-8 px-16">
+      <aside className="col-span-9 md:col-span-5 xl:col-span-4 flex flex-col items-center justify-center md:items-start text-center md:text-left py-8 px-16">
         <h1 className="text-3xl md:text-4xl font-semibold text-dark">E-mail verificado com sucesso!</h1>
 
         <p className="text-gray-600 font-medium md:text-lg flex items-center mb-8 mt-3 md:my-5">

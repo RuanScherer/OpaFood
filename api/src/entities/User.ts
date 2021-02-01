@@ -12,9 +12,6 @@ export class User {
   
   @Column("string", { unique: true })
   public email: string
-
-  @Column("string", { unique: true })
-  public phone: string
   
   @Column("string")
   public password: string

@@ -10,14 +10,13 @@ export class CreateCustomerController {
     this.createCustomerUseCase = createCustomerUseCase
   }
   async handle(request: Request, response: Response):Promise<Response> {
-    const { name, email, password, phone } = request.body
+    const { name, email, password } = request.body
 
     try {
       await this.createCustomerUseCase.execute({
         name,
         email,
         password,
-        phone,
         verified: false,
         token: null
       })

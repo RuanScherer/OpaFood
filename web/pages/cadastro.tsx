@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FormEvent, useCallback, useState } from 'react'
+import { FormEvent, useCallback, useRef, useState } from 'react'
 import { FiChevronLeft, FiInfo } from 'react-icons/fi'
+import api from '../services/api'
 
 const Cadastro:React.FC = () => {
   const [name, setName] = useState("")
@@ -9,6 +10,7 @@ const Cadastro:React.FC = () => {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState(false)
+  const buttonRef = useRef(null)
   const router = useRouter()
 
   const handleRegister = useCallback(async (event: FormEvent, { name, email, password, confirmPassword }) => {
@@ -21,15 +23,29 @@ const Cadastro:React.FC = () => {
       return
     }
 
-    router.push("verifique-seu-email")
+    buttonRef.current.innerHTML = "Carregando..."
+
+    api
+      .post("/customers/register", {
+        name,
+        email,
+        password
+      })
+      .then(() => router.push("verifique-seu-email"))
+      .catch(() => {
+        setError(true)
+        buttonRef.current.innerHTML = "Crie sua conta no OpaFood"
+      })
   }, [])
 
   return (
     <main className="mx-auto grid grid-cols-9 min-h-screen bg-primary">
-      <aside className="relative col-span-9 sm:col-span-6 md:col-span-5 xl:col-span-4 bg-white py-8 px-16">
-        <form className="flex flex-col justify-center w-full h-full space-y-12">
+      <aside className="relative col-span-9 sm:col-span-6 md:col-span-5 xl:col-span-4 bg-light py-8 px-16">
+        <form 
+          onSubmit={event => handleRegister(event, { name, email, password, confirmPassword })}
+          className="flex flex-col justify-center w-full h-full space-y-12">
           <Link href="/">
-            <a className="flex items-center font-bold mb-4 hover:-translate-x-1 transition transform duration-200">
+            <a className="flex items-center font-bold mb-4 hover:-translate-x-1 transition transform duration-200 fit-content">
               <FiChevronLeft size={30} className="mr-2"/>
               Voltar
             </a>
@@ -49,7 +65,7 @@ const Cadastro:React.FC = () => {
                 value={name}
                 onChange={event => setName(event.target.value)}
                 required
-                className="bg-gray-50 px-5 py-4 rounded-lg w-full hover:bg-gray-100 focus:bg-gray-100 transition duration-200 place"/>
+                className="bg-white px-5 py-4 rounded-lg w-full border-2 border-transparent focus:border-primary transition duration-200 place"/>
             </div>
             
             <div className="space-y-2">
@@ -64,7 +80,7 @@ const Cadastro:React.FC = () => {
                 value={email}
                 onChange={event => setEmail(event.target.value)}
                 required
-                className="bg-gray-50 px-5 py-4 rounded-lg w-full hover:bg-gray-100 focus:bg-gray-100 transition duration-200 place"/>
+                className="bg-white px-5 py-4 rounded-lg w-full border-2 border-transparent focus:border-primary transition duration-200 place"/>
             </div>
           </fieldset>
 
@@ -81,7 +97,7 @@ const Cadastro:React.FC = () => {
                 value={password}
                 onChange={event => setPassword(event.target.value)}
                 required
-                className="bg-gray-50 px-5 py-4 rounded-lg w-full hover:bg-gray-100 focus:bg-gray-100 transition duration-200 place"/>
+                className="bg-white px-5 py-4 rounded-lg w-full border-2 border-transparent focus:border-primary transition duration-200 place"/>
             </div>
 
             <div className="space-y-2">
@@ -96,7 +112,7 @@ const Cadastro:React.FC = () => {
                 value={confirmPassword}
                 onChange={event => setConfirmPassword(event.target.value)}
                 required
-                className="bg-gray-50 px-5 py-4 rounded-lg w-full hover:bg-gray-100 focus:bg-gray-100 transition duration-200 place"/>
+                className="bg-white px-5 py-4 rounded-lg w-full border-2 border-transparent focus:border-primary transition duration-200 place"/>
             </div>
           </fieldset>
 
@@ -111,7 +127,7 @@ const Cadastro:React.FC = () => {
 
           <button
             type="submit"
-            onClick={event => handleRegister(event, { name, email, password, confirmPassword })}
+            ref={buttonRef}
             className="bg-primary text-white rounded-xl py-4 px-6 font-bold hover:bg-opacity-90 transition duration-200">
             Crie sua conta no OpaFood
           </button>

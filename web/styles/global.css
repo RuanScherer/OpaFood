@@ -28,3 +28,7 @@
 .yellow {
   color: #e7a74e;
 }
+
+.fit-content {
+  width: fit-content !important;
+}

@@ -4,13 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        light: '#F3F3F3',
-        dark: '#1e1849',
+        light: '#FAFAFC',
+        dark: '#050708',
         semidark: '#3f3b66',
         legend: '#554ab2',
-        placeholder: '#afafaf',
+        paragraph: '#BBBBC1',
         error: '#ad0a0a',
-        primary: '#f87652',
+        primary: '#EE383C',
         secondary: '#554ab2',
       },
       fontFamily: {
