@@ -4,7 +4,7 @@ import { FormEvent, useCallback, useRef, useState } from 'react'
 import { FiChevronLeft, FiInfo } from 'react-icons/fi'
 import api from '../services/api'
 
-const Cadastro:React.FC = () => {
+const SignUp:React.FC = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -142,4 +142,4 @@ const Cadastro:React.FC = () => {
   )
 }
 
-export default Cadastro
+export default SignUp
