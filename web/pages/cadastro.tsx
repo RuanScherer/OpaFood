@@ -9,7 +9,7 @@ const Cadastro:React.FC = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const [error, setError] = useState(false)
+  const [error, setError] = useState("")
   const buttonRef = useRef(null)
   const router = useRouter()
 
@@ -19,7 +19,7 @@ const Cadastro:React.FC = () => {
     if ((!name || !email || !password || !confirmPassword)
         || password.length < 8
         || password != confirmPassword) {
-      setError(true)
+      setError("Os dados informados são inválidos.")
       return
     }
 
@@ -33,7 +33,7 @@ const Cadastro:React.FC = () => {
       })
       .then(() => router.push("verifique-seu-email"))
       .catch(() => {
-        setError(true)
+        setError("Erro no servidor ao realizar o cadastro.")
         buttonRef.current.innerHTML = "Crie sua conta no OpaFood"
       })
   }, [])
@@ -119,9 +119,9 @@ const Cadastro:React.FC = () => {
           { error &&
             <span className="text-error font-medium text-sm leading-5 flex items-center">
               <FiInfo size={26} className="mr-2"/>
-              Os dados informados são inválidos.
+              {error}
               <br/>
-              Por favor, revise-os e tente novamente.
+              Por favor, tente novamente.
             </span>
           }
 
