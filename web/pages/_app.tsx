@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import "../styles/global.css"
 import { AnimateSharedLayout, motion } from 'framer-motion'
-import { useRouter } from "next/router"
 
 interface AppProps {
   Component: React.FC
@@ -12,8 +11,6 @@ interface AppProps {
 }
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
-  const router = useRouter()
-
   return (
     <AnimateSharedLayout>
       <Head>

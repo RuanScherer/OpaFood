@@ -6,7 +6,7 @@ const Home:React.FC = () => {
   return (
     <>
       <Header />
-      <main className="px-8 pb-20 lg:pb-8 pt-48 text-gray-700 container mx-auto">
+      <main className="px-8 pb-20 lg:pb-8 pt-24 text-gray-700 container mx-auto">
         <ul className="list-none hidden lg:flex items-center justify-center">
           <li className="flex flex-col items-center cursor-pointer mx-3 my-2">
             <Link href="/buscar">
