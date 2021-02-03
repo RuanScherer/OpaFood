@@ -22,6 +22,9 @@ export class User {
   @Column("string", { default: v4() })
   public token: string
 
+  @Column("string", { default: v4() })
+  public resetPasswordToken: string
+
   constructor(props: Omit<User, '_id'>, _id?: string) {
     Object.assign(this, props)
   }

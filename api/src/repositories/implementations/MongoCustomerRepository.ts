@@ -31,7 +31,7 @@ export class MongoCustomerRepository implements ICustomerRepository {
     await connect()
     this.manager = getMongoManager()
 
-    customer.token = v4()
+    if (!customer.token) customer.token = v4()
 
     await this.manager.save(customer)
     

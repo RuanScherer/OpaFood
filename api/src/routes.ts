@@ -2,6 +2,7 @@ import { Router } from "express";
 import { authenticateCustomerController } from "./useCases/AuthenticateCustomer";
 import { createCustomerController } from "./useCases/CreateCustomer";
 import { createRestaurantController } from "./useCases/CreateRestaurant";
+import { resetCustomerPasswordController } from "./useCases/ResetCustomerPassword";
 import { verifyCustomerController } from "./useCases/VerifyCustomer";
 import { verifyRestaurantController } from "./useCases/VerifyRestaurant";
 
@@ -17,6 +18,10 @@ router.get("/customers/verify", (request, response) => {
 
 router.post("/customers/authenticate", (request, response) => {
   return authenticateCustomerController.handle(request, response)
+})
+
+router.post("/customers/getPasswordResetToken", (request, response) => {
+  return resetCustomerPasswordController.handle(request, response)
 })
 
 router.post("/restaurants/register", (request, response) => {
