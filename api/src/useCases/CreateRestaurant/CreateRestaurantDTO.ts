@@ -9,4 +9,5 @@ export interface ICreateRestaurantRequestDTO {
   document: string
   verified: boolean
   token: string
+  resetPasswordToken: string
 }

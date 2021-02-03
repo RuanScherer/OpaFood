@@ -4,4 +4,5 @@ export interface ICreateCustomerRequestDTO {
   password: string
   verified: boolean
   token: string
+  resetPasswordToken: string
 }

@@ -19,7 +19,8 @@ export class CreateRestaurantController {
         address,
         document,
         verified: false,
-        token: null
+        token: null,
+        resetPasswordToken: null
       })
 
       return response.status(201).send()
