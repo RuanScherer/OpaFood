@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { FiInfo } from 'react-icons/fi'
 import { getQueryParam } from '../helpers/url'
+import api from '../services/api'
 
 const ResetPassword:React.FC = () => {
   const [password, setPassword] = useState("")
@@ -24,7 +25,16 @@ const ResetPassword:React.FC = () => {
 
     buttonRef.current.innerHTML = "Carregando..."
 
-    router.replace("/senha-redefinida")
+    api
+      .post("/customers/updatePassword", { 
+        password,
+        token: getQueryParam("token")
+      })
+      .then(() => router.push("senha-redefinida"))
+      .catch(() => {
+        setError("Houve um erro ao salvar sua nova senha.")
+        buttonRef.current.innerHTML = "Redefinir minha senha"
+      })
   }, [])
 
   return (
