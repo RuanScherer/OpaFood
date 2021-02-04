@@ -16,11 +16,11 @@ const VerifyYourEmail: React.FC = () => {
         <h1 className="text-3xl md:text-4xl font-semibold text-dark">Verifique seu e-mail!</h1>
 
         <span className="text-gray-600 font-medium md:text-lg flex items-center mb-8 mt-3 md:my-5">
-          Para acessar sua conta, você precisa confirmar seu e-mail.
+          Para concluir, você precisa confirmar seu e-mail.
         </span>
 
         <button
-          onClick={() => router.push("entrar")}
+          onClick={() => router.push("/")}
           className="w-full bg-primary text-white rounded-xl py-4 px-6 font-bold hover:bg-opacity-90 transition duration-200">
           Entendido
         </button>

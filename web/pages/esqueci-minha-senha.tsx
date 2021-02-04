@@ -1,9 +1,33 @@
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { FormEvent, useEffect, useRef, useState } from "react"
+import api from "../services/api"
+import { FiInfo } from 'react-icons/fi'
 
 const ForgotMyPassword: React.FC = () => {
   const [email, setEmail] = useState("")
+  const [error, setError] = useState("")
+  const buttonRef = useRef(null)
   const router = useRouter()
+
+  useEffect(() => {
+    if (localStorage.getItem("authenticationToken")) router.back()
+  }, [])
+
+  const handleGetResetPasswordToken = async (event: FormEvent) => {
+    event.preventDefault()
+
+    if (!email) return
+    
+    buttonRef.current.innerHTML = "Carregando..."
+
+    api
+      .post("/customers/getPasswordResetToken", { email })
+      .then(() => router.push("verifique-seu-email"))
+      .catch(() => {
+        setError("Erro no servidor ao processar sua solicitação.")
+        buttonRef.current.innerHTML = "Enviar o link para meu e-mail"
+      })
+  }
 
   return (
     <main className="mx-auto grid grid-cols-9 min-h-screen py-14 lg:p-20 xl:p-24">
@@ -14,7 +38,9 @@ const ForgotMyPassword: React.FC = () => {
           alt="Illustration"/>
       </aside>
 
-      <aside className="col-span-9 md:col-span-5 xl:col-span-4 flex flex-col items-center justify-center md:items-start text-center md:text-left py-8 px-16">
+      <form 
+        onSubmit={handleGetResetPasswordToken}
+        className="col-span-9 md:col-span-5 xl:col-span-4 flex flex-col items-center justify-center md:items-start text-center md:text-left py-8 px-16">
         <h1 className="text-3xl md:text-4xl font-semibold text-dark">Esqueceu sua senha?</h1>
 
         <span className="text-gray-600 font-medium md:text-lg flex items-center mt-3 md:mt-5">
@@ -33,12 +59,21 @@ const ForgotMyPassword: React.FC = () => {
           required
           className="bg-white my-8 px-5 py-4 rounded-lg w-full border-2 border-transparent focus:border-primary transition duration-200"/>
 
+        { error &&
+          <span className="text-error font-medium text-sm leading-5 flex items-center mb-8">
+            <FiInfo size={26} className="mr-2"/>
+            {error}
+            <br/>
+            Por favor, tente novamente.
+          </span>
+        }
+
         <button
-          onClick={() => router.push("entrar")}
+          ref={buttonRef}
           className="w-full bg-primary text-white rounded-xl py-4 px-6 font-bold hover:bg-opacity-90 transition duration-200">
           Enviar o link para meu e-mail
         </button>
-      </aside>
+      </form>
     </main>
   )
 }
