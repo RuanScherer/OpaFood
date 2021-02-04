@@ -31,4 +31,17 @@ const resetPasswordEmailTemplate = (token: string) =>
     </a>
   </p>`
 
-export { verifyAccountEmailTemplate, newAccessEmailTemplate, resetPasswordEmailTemplate }
+const passwordResetedEmailTemplate =
+  `<p style="background-color:#f0f0f0;padding: 2rem;font-size: 1.2rem;color: #000;text-align: center;">
+    Estamos passando pra avisar que a senha da sua conta no OpaFood acabou de ser redefinida.
+    <br>
+    <br>
+    Atenciosamente, Equipe OpaFood.
+  </p>`
+
+export { 
+  verifyAccountEmailTemplate,
+  newAccessEmailTemplate,
+  resetPasswordEmailTemplate,
+  passwordResetedEmailTemplate
+}

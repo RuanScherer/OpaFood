@@ -3,6 +3,7 @@ import { authenticateCustomerController } from "./useCases/AuthenticateCustomer"
 import { createCustomerController } from "./useCases/CreateCustomer";
 import { createRestaurantController } from "./useCases/CreateRestaurant";
 import { resetCustomerPasswordController } from "./useCases/ResetCustomerPassword";
+import { updateCustomerPasswordController } from "./useCases/UpdateCustomerPassword";
 import { verifyCustomerController } from "./useCases/VerifyCustomer";
 import { verifyRestaurantController } from "./useCases/VerifyRestaurant";
 
@@ -22,6 +23,10 @@ router.post("/customers/authenticate", (request, response) => {
 
 router.post("/customers/getPasswordResetToken", (request, response) => {
   return resetCustomerPasswordController.handle(request, response)
+})
+
+router.post("/customers/updatePassword", (request, response) => {
+  return updateCustomerPasswordController.handle(request, response)
 })
 
 router.post("/restaurants/register", (request, response) => {

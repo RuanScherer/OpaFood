@@ -27,6 +27,16 @@ export class MongoCustomerRepository implements ICustomerRepository {
     return customer
   }
 
+  async findByResetPasswordToken(resetPasswordToken: string): Promise<Customer> {
+    await connect()
+    this.manager = getMongoManager()
+
+    const customer = await this.manager.findOne(Customer, { resetPasswordToken })
+
+    await disconnect()
+    return customer
+  }
+
   async save(customer: Customer): Promise<string> {
     await connect()
     this.manager = getMongoManager()
