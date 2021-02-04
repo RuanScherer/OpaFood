@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
-import { FormEvent, useCallback, useRef, useState } from 'react'
+import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { FiInfo } from 'react-icons/fi'
+import { getQueryParam } from '../helpers/url'
 
 const ResetPassword:React.FC = () => {
   const [password, setPassword] = useState("")
@@ -8,6 +9,10 @@ const ResetPassword:React.FC = () => {
   const [error, setError] = useState("")
   const buttonRef = useRef(null)
   const router = useRouter()
+
+  useEffect(() => {
+    if (!getQueryParam("token")) router.back()
+  }, [])
 
   const handleSignIn = useCallback(async (event: FormEvent, { password, confirmPassword }) => {
     event.preventDefault()
