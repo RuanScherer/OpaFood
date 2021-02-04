@@ -42,7 +42,7 @@ export class AuthenticateCustomerUseCase {
         step: 'END',
         message: 'End of Authenticate Customer use case'
       })
-      throw new Error('User does not exists.')
+      throw new Error('Invalid login data.')
     }
 
     await this.mailProvider.sendMail({
