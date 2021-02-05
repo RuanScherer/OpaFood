@@ -12,9 +12,10 @@ module.exports = {
         error: '#ad0a0a',
         primary: '#EE383C',
         secondary: '#554ab2',
+        success: '#47C287'
       },
       fontFamily: {
-        serif: ['Arvo', 'sans-serif']
+        serif: ['Roboto', 'sans-serif']
       }
     },
   },
