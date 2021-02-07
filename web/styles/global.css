@@ -1,6 +1,13 @@
 html, body {
   font-family: 'Roboto', sans-serif;
   background-color: #FAFAFC;
+  -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none !important;
 }
 
 * {
