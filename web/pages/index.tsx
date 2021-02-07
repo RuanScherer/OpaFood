@@ -94,7 +94,7 @@ const Home:React.FC = () => {
             </aside>
           </main>
 
-          <section className="my-28">
+          <section className="my-14 md:my-28">
             <Slider<RestaurantData>
               title="Restaurantes populares..."
               data={restaurants}

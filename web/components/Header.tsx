@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { FiClipboard, FiHome, FiLogIn, FiSearch, FiUser } from 'react-icons/fi'
 import { getAuthenticationTokenData } from '../helpers/token'
@@ -42,9 +43,11 @@ const Header: React.FC = () => {
                     className="rounded-full border-2 border-primary w-12 p-1"
                     src="https://avatars.githubusercontent.com/u/50061559?s=460&u=c852aeac2cf92ba5f8335515be54da3d5d68ffeb&v=4" 
                     alt="Profile Picture"/>
-                : <FiLogIn 
-                    className="rounded-full border-2 border-gray-200 p-2 bg-gray-50"
-                    size={44}/>
+                : <Link href="/entrar">
+                    <FiLogIn 
+                      className="rounded-full border-2 border-gray-200 p-2 bg-gray-50"
+                      size={44}/>
+                  </Link>
               }
             </button>
           </div>
