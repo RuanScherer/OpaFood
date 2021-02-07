@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { FiClipboard, FiHome, FiLogIn, FiSearch, FiUser } from 'react-icons/fi'
+import { FiCalendar, FiHome, FiList, FiLogIn, FiSearch } from 'react-icons/fi'
 import { getAuthenticationTokenData } from '../helpers/token'
 
 const Header: React.FC = () => {
@@ -32,7 +32,7 @@ const Header: React.FC = () => {
                   Minhas reservas
                 </a>
                 <a href="#" className="flex items-center hover:opacity-70 transition">
-                  Escanear QR Code
+                  Histórico
                 </a>
               </nav>
             </div>
@@ -68,16 +68,16 @@ const Header: React.FC = () => {
           <legend className="text-xs">Buscar</legend>
         </a>
         <a className="flex flex-col items-center hover:opacity-70 transition cursor-pointer">
-          <FiClipboard
+          <FiCalendar
             className="mb-1 stroke-2"
             size={20}/>
           <legend className="text-xs">Reservas</legend>
         </a>
         <a className="flex flex-col items-center hover:opacity-70 transition cursor-pointer">
-          <FiUser
+          <FiList
             className="mb-1 stroke-2"
             size={20}/>
-          <legend className="text-xs">Perfil</legend>
+          <legend className="text-xs">Histórico</legend>
         </a>
       </footer>
     </>
