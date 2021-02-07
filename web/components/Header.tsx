@@ -51,7 +51,7 @@ const Header: React.FC = () => {
         </header>
       </div>
 
-      <footer className="fixed bottom-0 bg-white px-8 py-1 w-screen flex md:hidden items-center justify-around border-gray-100 border-t">
+      <footer className="fixed z-40 bottom-0 bg-white px-8 py-1 w-screen flex md:hidden items-center justify-around border-gray-100 border-t">
         <a className="flex flex-col items-center hover:opacity-70 transition cursor-pointer">
           <FiHome
             className="mb-1 stroke-2"
