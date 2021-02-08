@@ -1,10 +1,5 @@
 import { sign } from "jsonwebtoken";
 
-interface IPayload {
-  _id: string
-  name: string
-}
-
 const validateDocument = (document: string) => {
  
   document = document.replace(/[^\d]+/g,'');

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authMiddleware } from "./middlewares/auth";
 import { authenticateCustomerController } from "./useCases/AuthenticateCustomer";
 import { createCustomerController } from "./useCases/CreateCustomer";
 import { createRestaurantController } from "./useCases/CreateRestaurant";
@@ -36,5 +37,7 @@ router.post("/restaurants/register", (request, response) => {
 router.get("/restaurants/verify", (request, response) => {
   return verifyRestaurantController.handle(request, response)
 })
+
+router.use(authMiddleware)
 
 export { router }
