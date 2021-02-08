@@ -7,6 +7,16 @@ import { ICustomerRepository } from "../ICustomerRepository";
 export class MongoCustomerRepository implements ICustomerRepository {
   public manager: MongoEntityManager
 
+  async findById(_id: string): Promise<Customer> {
+    await connect()
+    this.manager = getMongoManager()
+
+    const customer = await this.manager.findOne(Customer, _id)
+
+    await disconnect()
+    return customer
+  }
+  
   async findByEmail(email: string): Promise<Customer> {
     await connect()
     this.manager = getMongoManager()

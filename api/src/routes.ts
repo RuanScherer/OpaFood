@@ -1,8 +1,10 @@
 import { Router } from "express";
+import { OpaFoodRequest } from "./commons/interfaces";
 import { authMiddleware } from "./middlewares/auth";
 import { authenticateCustomerController } from "./useCases/AuthenticateCustomer";
 import { createCustomerController } from "./useCases/CreateCustomer";
 import { createRestaurantController } from "./useCases/CreateRestaurant";
+import { getCustomerProfileDataController } from "./useCases/GetCustomerProfileData";
 import { resetCustomerPasswordController } from "./useCases/ResetCustomerPassword";
 import { updateCustomerPasswordController } from "./useCases/UpdateCustomerPassword";
 import { verifyCustomerController } from "./useCases/VerifyCustomer";
@@ -39,5 +41,9 @@ router.get("/restaurants/verify", (request, response) => {
 })
 
 router.use(authMiddleware)
+
+router.get("/customers/:_id", (request: OpaFoodRequest, response) => {
+  return getCustomerProfileDataController.handle(request, response)
+})
 
 export { router }

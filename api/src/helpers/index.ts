@@ -50,6 +50,9 @@ const validateDocument = (document: string) => {
   return true; 
 }
 
-const generateToken = (_id: string, name: string) => sign({ _id, name }, process.env.SECRET_KEY)
+const generateToken = (_id: string, name: string) => {
+  console.log(process.env.SECRET_KEY)
+  sign({ _id, name }, process.env.SECRET_KEY)
+}
 
 export { validateDocument, generateToken }
