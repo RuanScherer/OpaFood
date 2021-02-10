@@ -2,10 +2,12 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { FiCalendar, FiHome, FiList, FiLogIn, FiSearch } from 'react-icons/fi'
 import { getAuthenticationTokenData } from '../helpers/token'
+import useWindowSize from '../hooks/useWindowSize'
 
 const Header: React.FC = () => {
   const [userName, setUserName] = useState("")
   const [userPhoto, setUserPhoto] = useState("")
+  const { width } = useWindowSize()
 
   useEffect(() => {
     const { _id, name } = getAuthenticationTokenData()
@@ -20,7 +22,7 @@ const Header: React.FC = () => {
         <header className="px-8 py-4 lg:py-5 bg-white border-gray-200 border shadow-md">
           <div className="mx-auto container flex justify-between items-center">
             <div className="flex space-x-12">
-              <h1 className="text-3xl font-bold">
+              <h1 className="text-2xl md:text-3xl font-bold">
                 opa<span className="text-primary">Food</span>
               </h1>
 
@@ -40,13 +42,13 @@ const Header: React.FC = () => {
             <button className="hover:opacity-80 transition text-gray-300" title={userName}>
               { userPhoto
                 ? <img 
-                    className="rounded-full border-2 border-primary w-12 p-1"
+                    className="rounded-full border-2 border-primary w-9 md:w-12 p-1"
                     src="https://avatars.githubusercontent.com/u/50061559?s=460&u=c852aeac2cf92ba5f8335515be54da3d5d68ffeb&v=4" 
                     alt="Profile Picture"/>
                 : <Link href="/entrar">
                     <FiLogIn 
                       className="rounded-full border-2 border-gray-200 p-2 bg-gray-50"
-                      size={44}/>
+                      size={width > 768 ? 44 : 36}/>
                   </Link>
               }
             </button>
