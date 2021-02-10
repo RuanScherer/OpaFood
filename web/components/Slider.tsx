@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
+import useWindowSize from '../hooks/useWindowSize';
 
 interface SliderProps<T> {
   title: string
@@ -39,6 +40,7 @@ const swipePower = (offset: number, velocity: number) => {
 
 const Slider = <T extends object>({ title, data, itemComponent, itemsPerPage = 4, cols = 2 }: SliderProps<T>) => {
   const [[page, direction], setPage] = useState([0, 0])
+  const { width } = useWindowSize()
   
   const pagesNumber = Math.ceil(data.length / 4)
   const currentDataToShow = data.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage)
@@ -55,21 +57,23 @@ const Slider = <T extends object>({ title, data, itemComponent, itemsPerPage = 4
       <header className="flex items-center justify-between space-x-4 mb-14">
         <h2 className="font-bold text-2xl md:text-3xl text-dark">{ title }</h2>
 
-        <nav className="flex items-center space-x-5">
-          <button
-            onClick={() => paginate(-1)}
-            className="bg-primary p-2 rounded-xl hover:bg-opacity-80 disabled:opacity-50 transition"
-            disabled={isFirstPage}>
-            <FiChevronLeft size={26} color="#FFF"/>
-          </button>
+        { width >= 768 &&
+          <nav className="flex items-center space-x-5">
+            <button
+              onClick={() => paginate(-1)}
+              className="bg-primary p-2 rounded-xl hover:bg-opacity-80 disabled:opacity-50 transition"
+              disabled={isFirstPage}>
+              <FiChevronLeft size={26} color="#FFF"/>
+            </button>
 
-          <button 
-            onClick={() => paginate(1)}
-            className="bg-primary p-2 rounded-xl hover:bg-opacity-80 disabled:opacity-50 transition"
-            disabled={isLastPage}>
-            <FiChevronRight size={26} color="#FFF"/>
-          </button>
-        </nav>
+            <button 
+              onClick={() => paginate(1)}
+              className="bg-primary p-2 rounded-xl hover:bg-opacity-80 disabled:opacity-50 transition"
+              disabled={isLastPage}>
+              <FiChevronRight size={26} color="#FFF"/>
+            </button>
+          </nav>
+        }
       </header>
 
       <AnimatePresence initial={false} custom={direction}>
@@ -84,7 +88,7 @@ const Slider = <T extends object>({ title, data, itemComponent, itemsPerPage = 4
             x: { type: "spring", stiffness: 300, damping: 25 },
             opacity: { duration: 0.2 }
           }}
-          drag="x"
+          drag={width >= 768 ? "x" : false}
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={1}
           onDragEnd={(e, { offset, velocity }) => {
@@ -96,8 +100,8 @@ const Slider = <T extends object>({ title, data, itemComponent, itemsPerPage = 4
               paginate(-1)
             }
           }}
-          className={`list-none grid grid-cols-${cols} gap-x-16 gap-y-12`}>
-          { currentDataToShow.map(itemData => <Item {...itemData} />) }
+          className={`list-none grid grid-cols-${cols} gap-y-8 md:gap-x-16 md:gap-y-12`}>
+          { currentDataToShow.map((itemData: T, index: number) => <Item {...itemData} key={index}/>) }
         </motion.ul>
       </AnimatePresence>
     </>
