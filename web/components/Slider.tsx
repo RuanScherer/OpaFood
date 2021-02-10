@@ -54,7 +54,7 @@ const Slider = <T extends object>({ title, data, itemComponent, itemsPerPage = 4
 
   return (
     <>
-      <header className="flex items-center justify-between space-x-4 mb-14">
+      <header className="flex items-center justify-between space-x-4 mb-10 md:mb-14">
         <h2 className="font-bold text-2xl md:text-3xl text-dark">{ title }</h2>
 
         { width >= 768 &&
