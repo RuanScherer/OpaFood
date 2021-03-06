@@ -1,3 +1,4 @@
+import { SimpleConsoleLogger } from "typeorm";
 import { log } from "../../logger";
 import { MongoCustomerRepository } from "../../repositories/implementations/MongoCustomerRepository";
 
@@ -26,6 +27,15 @@ export class VerifyCustomerUseCase {
         message: 'End of Verify Customer use case'
       })
       throw new Error("Invalid token.")
+    }
+
+    if (customer.verified) {
+      log({
+        type: 'INFO',
+        step: 'END',
+        message: 'End of Verify Customer use case'
+      })
+      throw new Error("already been verified")
     }
 
     customer.verified = true

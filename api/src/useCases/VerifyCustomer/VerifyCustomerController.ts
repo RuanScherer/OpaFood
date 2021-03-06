@@ -17,10 +17,12 @@ export class VerifyCustomerController {
       if (!token || typeof(token) !== 'string') return response.status(400).send()
 
       await this.verifyCustomerUseCase.execute(token)
-      
       response.redirect('http://localhost:3000/email-verificado')
       return
     } catch (error) {
+      if (error.message == "already been verified") {
+        response.redirect('http://localhost:3000/email-ja-verificado')  
+      }
       return response.status(400).json({ message: error.message || 'Unexpected error.' })
     }
   }
