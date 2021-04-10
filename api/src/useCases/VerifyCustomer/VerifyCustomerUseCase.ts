@@ -28,7 +28,17 @@ export class VerifyCustomerUseCase {
       throw new Error("Invalid token.")
     }
 
+    if (customer.verified) {
+      log({
+        type: 'INFO',
+        step: 'END',
+        message: 'End of Verify Customer use case'
+      })
+      throw new Error("already been verified")
+    }
+
     customer.verified = true
+    customer.token = null;
     this.customerRepository.save(customer)
     
     log({

@@ -42,7 +42,7 @@ export class CreateRestaurantUseCase {
 
     const restaurant = new Restaurant(data)
 
-    const token = await this.restaurantRepository.save(restaurant)
+    const token = await this.restaurantRepository.create(restaurant)
 
     await this.mailProvider.sendMail({
       to: data.email,
