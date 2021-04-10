@@ -44,15 +44,26 @@ export class MongoRestaurantRepository implements IRestaurantRepository {
     return restaurant
   }
 
-  async save(customer: Restaurant): Promise<string> {
+  async create(customer: Restaurant) : Promise<string> {
+    customer.token = this.generateUUID()
+    return await this.saveCustomer(customer)
+  }
+
+  async save(customer: Restaurant) : Promise<void> {
+    await this.saveCustomer(customer)
+  }
+
+  async saveCustomer(customer: Restaurant): Promise<string> {
     await connect()
     this.manager = getMongoManager()
-
-    customer.token = v4()
 
     await this.manager.save(customer)
     
     await disconnect()
     return customer.token
+  }
+
+  generateUUID(): string {
+    return v4()
   }
 }

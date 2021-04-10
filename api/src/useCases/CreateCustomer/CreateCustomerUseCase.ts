@@ -49,7 +49,7 @@ export class CreateCustomerUseCase {
 
     const customer = new Customer(data)
 
-    const token = await this.customerRepository.save(customer)
+    const token = await this.customerRepository.create(customer)
 
     await this.mailProvider.sendMail({
       to: data.email,

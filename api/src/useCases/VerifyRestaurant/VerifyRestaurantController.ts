@@ -21,6 +21,9 @@ export class VerifyRestaurantController {
       response.redirect('http://localhost:3000/email-verificado')
       return
     } catch (error) {
+      if (error.message == "already been verified") {
+        response.redirect('http://localhost:3000/email-ja-verificado')  
+      }
       return response.status(400).json({ message: error.message || 'Unexpected error.' })
     }
   }

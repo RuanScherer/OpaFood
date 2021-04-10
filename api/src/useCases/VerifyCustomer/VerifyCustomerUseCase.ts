@@ -1,4 +1,3 @@
-import { SimpleConsoleLogger } from "typeorm";
 import { log } from "../../logger";
 import { MongoCustomerRepository } from "../../repositories/implementations/MongoCustomerRepository";
 
@@ -39,6 +38,7 @@ export class VerifyCustomerUseCase {
     }
 
     customer.verified = true
+    customer.token = null;
     this.customerRepository.save(customer)
     
     log({

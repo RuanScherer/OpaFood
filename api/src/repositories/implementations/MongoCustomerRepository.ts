@@ -47,15 +47,27 @@ export class MongoCustomerRepository implements ICustomerRepository {
     return customer
   }
 
-  async save(customer: Customer): Promise<string> {
+  async create(customer: Customer) : Promise<string> {
+    customer.token = this.generateUUID()
+    return await this.saveCustomer(customer)
+  }
+
+  async save(customer: Customer) : Promise<void> {
+    await this.saveCustomer(customer)
+  }
+
+  async saveCustomer(customer: Customer): Promise<string> {
     await connect()
     this.manager = getMongoManager()
-
-    if (!customer.token) customer.token = v4()
 
     await this.manager.save(customer)
     
     await disconnect()
     return customer.token
   }
+
+  generateUUID(): string {
+    return v4()
+  }
+
 }

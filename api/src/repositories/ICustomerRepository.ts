@@ -5,5 +5,6 @@ export interface ICustomerRepository {
   findByEmail(email: string): Promise<Customer>
   findByToken(token: string): Promise<Customer>
   findByResetPasswordToken(resetPasswordToken: string): Promise<Customer>
-  save(user: Customer): Promise<string>
+  save(user: Customer): Promise<void>
+  create(user: Customer): Promise<string>
 }
